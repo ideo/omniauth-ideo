@@ -20,7 +20,7 @@ module OmniAuth
           first_name: user_data['first_name'],
           last_name: user_data['last_name'],
           picture: user_data['picture'],
-          email_verified: user_data['email_verified'] 
+          email_verified: user_data['email_verified']
         }
       end
 
