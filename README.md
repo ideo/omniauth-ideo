@@ -24,12 +24,10 @@ Here's a quick example, adding the middleware to a Rails/Devise app in `config/i
 Devise.setup do |config|
   ...
   config.omniauth :ideo, ENV['IDEO_SSO_CLIENT_ID'], ENV['IDEO_SSO_CLIENT_SECRET'], {
-    setup: lambda do |env|
-      # Store the JS SSO SDK's "state" param to the session for
-      # validating authentication responses - otherwise you get csrf token errors
-      request = Rack::Request.new(env)
-      request.session['omniauth.state'] = request.cookies['IdeoSSO-State']
-    end
+    # This setup proc is necessary to store the JS SSO SDK's "state" param,
+    # which is validated when receiving an authentication response
+    # (otherwise you get csrf token errors)
+    setup: OmniAuth::Ideo::AuthFlow.populate_omniauth_state_from_cookie
   }
 end
 ```
