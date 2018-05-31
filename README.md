@@ -72,7 +72,7 @@ Here's an example *Auth Hash* available in `request.env['omniauth.auth']`:
         lat: 40.7127753,
         lng: -74.0059728
       },
-      time_zone: 'Eastern Time (US & Canada)',
+      time_zone: 'America/New_York',
       time_zone_offset: -8,
       updated_at: '2011-11-11T06:21:03+0000'
     }
