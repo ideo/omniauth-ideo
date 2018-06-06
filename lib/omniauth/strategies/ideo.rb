@@ -1,4 +1,4 @@
-require 'omniauth-oauth2'
+require 'omniauth-ideo'
 
 # This is the definition to auth with the IDEO SSO Network
 
@@ -17,6 +17,7 @@ module OmniAuth
       info do
         {
           email: user_data['email'],
+          username: user_data['username'],
           first_name: user_data['first_name'],
           last_name: user_data['last_name'],
           picture: user_data['picture'],
