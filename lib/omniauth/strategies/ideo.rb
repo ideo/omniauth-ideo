@@ -16,11 +16,11 @@ module OmniAuth
 
       info do
         {
-          email: user_attributes['email'],
           username: user_attributes['username'],
           first_name: user_attributes['first_name'],
           last_name: user_attributes['last_name'],
           picture: user_attributes['picture'],
+          email: user_attributes['email'],
           email_verified: user_attributes['email_verified'],
           emails: emails
         }
