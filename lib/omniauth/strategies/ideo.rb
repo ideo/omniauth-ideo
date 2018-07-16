@@ -39,6 +39,7 @@ module OmniAuth
       end
 
       def emails
+        return [] if raw_info['included'].blank?
         raw_info['included']
         .select { |obj| obj['type'] === 'emails' }
         .map { |email| email['attributes'] }
