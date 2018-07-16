@@ -55,24 +55,62 @@ Here's an example *Auth Hash* available in `request.env['omniauth.auth']`:
   },
   extra: {
     raw_info: {
-      uid: 'a123b456',
-      first_name: 'Jessica',
-      last_name: 'Gehring',
-      email: 'jgehring@acmeinc.com',
-      email_verified: true,
-      organization: 'Acme Inc',
-      org_role: 'VP Business Development',
-      linkedin_url: 'https://www.linkedin.com/in/jgehring',
-      twitter_url: 'https://twitter.com/jgehring',
-      location: {
-        name: 'New York, NY',
-        google_place_id: 'abc123456789',
-        lat: 40.7127753,
-        lng: -74.0059728
+      data: {
+        id: 'a123b456',
+        type: 'users',
+        attributes: {
+          uid: 'a123b456',
+          first_name: 'Jessica',
+          last_name: 'Gehring',
+          email: 'jgehring@acmeinc.com',
+          email_verified: true,
+          picture: 'https://d278pcsqxz7fg5.cloudfront.net/.../square-1531756321.jpg',
+          picture_medium: 'https://d278pcsqxz7fg5.cloudfront.net/.../medium-1531756321.jpg',
+          picture_large: 'https://d278pcsqxz7fg5.cloudfront.net/.../large-1531756321.jpg',
+          organization: 'Acme Inc',
+          org_role: 'VP Business Development',
+          linkedin_url: 'https://www.linkedin.com/in/jgehring',
+          twitter_url: 'https://twitter.com/jgehring',
+          time_zone: 'America/New_York',
+          time_zone_offset: -8,
+          created_at: '2017-04-15T10:08:46.499Z'
+          updated_at: '2018-11-11T16:22:18.259Z'
+        }
       },
-      time_zone: 'America/New_York',
-      time_zone_offset: -8,
-      updated_at: '2011-11-11T06:21:03+0000'
+      included: [
+        {
+          id: 5678,
+          type: 'locations',
+          attributes: {
+            name: 'New York, NY',
+            google_place_id: 'abc123456789',
+            lat: 40.7127753,
+            lng: -74.0059728
+          }
+        },
+        {
+          id: 55,
+          type: 'emails',
+          attributes: {
+            email: 'jgehring@acmeinc.com',
+            primary: true,
+            confirmed: true,
+            confirmed_at: "2018-07-16T15:52:01.131Z",
+            created_at: "2018-07-16T15:52:01.137Z"
+          }
+        },
+        {
+          id: 56,
+          type: 'emails',
+          attributes: {
+            email: 'jessica@acmeinc.com',
+            primary: false,
+            confirmed: true,
+            confirmed_at: "2018-07-16T15:52:01.131Z",
+            created_at: "2018-07-16T15:52:01.137Z"
+          }
+        }
+      ]
     }
   }
 }

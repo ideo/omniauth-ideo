@@ -12,29 +12,36 @@ module OmniAuth
         authorize_url: ENV.fetch('IDEO_SSO_AUTH_PATH', '/oauth/authorize')
       }
 
-      uid { user_data['uid'] }
+      uid { user_attributes['uid'] }
 
       info do
         {
-          email: user_data['email'],
-          username: user_data['username'],
-          first_name: user_data['first_name'],
-          last_name: user_data['last_name'],
-          picture: user_data['picture'],
-          email_verified: user_data['email_verified']
+          username: user_attributes['username'],
+          first_name: user_attributes['first_name'],
+          last_name: user_attributes['last_name'],
+          picture: user_attributes['picture'],
+          email: user_attributes['email'],
+          email_verified: user_attributes['email_verified'],
+          emails: emails
         }
       end
 
       extra do
         {
-          'raw_info' => user_data
+          'raw_info' => raw_info
         }
       end
 
-      def user_data
+      def user_attributes
         return {} if raw_info['data'].blank? ||
                      raw_info['data']['attributes'].blank?
         raw_info['data']['attributes']
+      end
+
+      def emails
+        raw_info['included']
+        .select { |obj| obj['type'] === 'emails' }
+        .map { |email| email['attributes'] }
       end
 
       def raw_info
